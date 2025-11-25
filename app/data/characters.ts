@@ -3,6 +3,12 @@ export interface CharacterInfo {
   pinyin: string;
 }
 
+export interface CharacterCategory {
+  id: string;
+  title: string;
+  characters: string;
+}
+
 export const characterDict: Record<string, CharacterInfo> = {
   '一': { meaning: 'one', pinyin: 'yī' },
   '二': { meaning: 'two', pinyin: 'èr' },
@@ -23,11 +29,7 @@ export const characterDict: Record<string, CharacterInfo> = {
   '中': { meaning: 'middle/center', pinyin: 'zhōng' },
   '么': { meaning: 'what (interrogative)', pinyin: 'me' },
   '了': { meaning: 'completed action marker', pinyin: 'le' },
-  '亚': { meaning: 'Asia/second', pinyin: 'yà' },
-  '些': { meaning: 'some', pinyin: 'xiē' },
   '京': { meaning: 'capital city', pinyin: 'jīng' },
-  '公': { meaning: 'public/common', pinyin: 'gōng' },
-  '兴': { meaning: 'prosper/interest', pinyin: 'xīng' },
   '午': { meaning: 'noon', pinyin: 'wǔ' },
   '卖': { meaning: 'sell', pinyin: 'mài' },
   '人': { meaning: 'person', pinyin: 'rén' },
@@ -37,9 +39,6 @@ export const characterDict: Record<string, CharacterInfo> = {
   '他': { meaning: 'he/him', pinyin: 'tā' },
   '们': { meaning: 'plural marker', pinyin: 'men' },
   '会': { meaning: 'can/will/meeting', pinyin: 'huì' },
-  '位': { meaning: 'position/seat', pinyin: 'wèi' },
-  '住': { meaning: 'live/reside', pinyin: 'zhù' },
-  '做': { meaning: 'do/make', pinyin: 'zuò' },
   '奶': { meaning: 'milk/grandmother', pinyin: 'nǎi' },
   '她': { meaning: 'she/her', pinyin: 'tā' },
   '好': { meaning: 'good/well', pinyin: 'hǎo' },
@@ -60,7 +59,6 @@ export const characterDict: Record<string, CharacterInfo> = {
   '吃': { meaning: 'eat', pinyin: 'chī' },
   '同': { meaning: 'same/together', pinyin: 'tóng' },
   '名': { meaning: 'name', pinyin: 'míng' },
-  '后': { meaning: 'after/behind', pinyin: 'hòu' },
   '吗': { meaning: 'question particle', pinyin: 'ma' },
   '吧': { meaning: 'suggestion particle', pinyin: 'ba' },
   '听': { meaning: 'listen/hear', pinyin: 'tīng' },
@@ -72,7 +70,6 @@ export const characterDict: Record<string, CharacterInfo> = {
   '商': { meaning: 'business/commerce', pinyin: 'shāng' },
   '喝': { meaning: 'drink', pinyin: 'hē' },
   '心': { meaning: 'heart/mind', pinyin: 'xīn' },
-  '必': { meaning: 'must/necessarily', pinyin: 'bì' },
   '思': { meaning: 'think/consider', pinyin: 'sī' },
   '怎': { meaning: 'how', pinyin: 'zěn' },
   '意': { meaning: 'meaning/intention', pinyin: 'yì' },
@@ -118,22 +115,18 @@ export const characterDict: Record<string, CharacterInfo> = {
   '温': { meaning: 'warm', pinyin: 'wēn' },
   '冰': { meaning: 'ice', pinyin: 'bīng' },
   '冷': { meaning: 'cold', pinyin: 'lěng' },
-  '凉': { meaning: 'cool', pinyin: 'liáng' },
   '火': { meaning: 'fire', pinyin: 'huǒ' },
   '点': { meaning: 'point/dot', pinyin: 'diǎn' },
   '烫': { meaning: 'hot/scalding', pinyin: 'tàng' },
   '电': { meaning: 'electricity', pinyin: 'diàn' },
-  '画': { meaning: 'draw/picture', pinyin: 'huà' },
   '本': { meaning: 'book/root', pinyin: 'běn' },
   '机': { meaning: 'machine/opportunity', pinyin: 'jī' },
   '来': { meaning: 'come', pinyin: 'lái' },
   '条': { meaning: 'strip/measure word', pinyin: 'tiáo' },
   '杯': { meaning: 'cup/glass', pinyin: 'bēi' },
   '果': { meaning: 'fruit', pinyin: 'guǒ' },
-  '样': { meaning: 'appearance/kind', pinyin: 'yàng' },
   '校': { meaning: 'school', pinyin: 'xiào' },
   '桌': { meaning: 'table/desk', pinyin: 'zhuō' },
-  '椅': { meaning: 'chair', pinyin: 'yǐ' },
   '西': { meaning: 'west', pinyin: 'xī' },
   '要': { meaning: 'want/need', pinyin: 'yào' },
   '饭': { meaning: 'rice/meal', pinyin: 'fàn' },
@@ -167,12 +160,10 @@ export const characterDict: Record<string, CharacterInfo> = {
   '门': { meaning: 'door/gate', pinyin: 'mén' },
   '问': { meaning: 'ask', pinyin: 'wèn' },
   '安': { meaning: 'peaceful/safe', pinyin: 'ān' },
-  '客': { meaning: 'guest/customer', pinyin: 'kè' },
   '家': { meaning: 'home/family', pinyin: 'jiā' },
   '厅': { meaning: 'hall/room', pinyin: 'tīng' },
   '店': { meaning: 'shop/store', pinyin: 'diàn' },
   '那': { meaning: 'that', pinyin: 'nà' },
-  '都': { meaning: 'all/both', pinyin: 'dōu' },
   '里': { meaning: 'inside/in', pinyin: 'lǐ' },
   '银': { meaning: 'silver', pinyin: 'yín' },
   '文': { meaning: 'writing/culture', pinyin: 'wén' },
@@ -198,8 +189,56 @@ export const characterDict: Record<string, CharacterInfo> = {
   '少': { meaning: 'few/little', pinyin: 'shǎo' },
   '很': { meaning: 'very', pinyin: 'hěn' },
   '现': { meaning: 'now/present', pinyin: 'xiàn' },
-  '给': { meaning: 'give', pinyin: 'gěi' }
+  '给': { meaning: 'give', pinyin: 'gěi' },
+  '喜': { meaning: 'like/happy', pinyin: 'xǐ' },
+  '起': { meaning: 'rise/start', pinyin: 'qǐ' },
+  '万': { meaning: 'ten thousand', pinyin: 'wàn' },
+  '钱': { meaning: 'money', pinyin: 'qián' },
+  '影': { meaning: 'shadow/image', pinyin: 'yǐng' },
+  '东': { meaning: 'east', pinyin: 'dōng' },
+  '瓜': { meaning: 'melon', pinyin: 'guā' },
+  '非': { meaning: 'not/non-', pinyin: 'fēi' },
+  '常': { meaning: 'often/usual', pinyin: 'cháng' }
 };
 
-export const characters = '一二三四五六七八九十百千亿上下不中么了亚些京公兴午卖人个什今他们会位住做奶她好妈子字学月有服朋脑口右叫可只吃同名后吗吧听呢味咖咸啡商喝心必思怎意想手打找把披排工左见觉走行话语说请谢对欢教式日早明昨是星晚在地坐块堡水汉没洗活温冰冷凉火点烫电画本机来条杯果样校桌椅西要饭饺餐米粮甜酒酸辣苦茶菜萨薯肉鱼鲜牛狗猪猫羊美鸟鸡白的黑门问安客家厅店那都里银文老生用看睡几出分办包北去回国多大太头师少很现给';
+// Character categories organized by radicals
+export const characterCategories: CharacterCategory[] = [
+  {
+    id: 'numbers',
+    title: 'Numbers (数字)',
+    characters: '一二三四五六七八九十百千亿'
+  },
+  {
+    id: 'nature',
+    title: 'Nature & Elements (自然与元素)',
+    characters: '日月本机来条杯果校桌水汉没洗活温冰冷火点烫电在地坐块堡白的黑'
+  },
+  {
+    id: 'people',
+    title: 'People, Body & Actions (人物，身体与动作)',
+    characters: '人个什今他们会奶她好妈子字学口右叫可只吃同名吗吧听呢味咖咸啡商喝心思怎意想手打找把披排工左见觉走行话语说请谢对欢喜教式看睡老生用办很起'
+  },
+  {
+    id: 'food',
+    title: 'Food, Plants & Animals (食物，植物与动物)',
+    characters: '饭饺餐米粮甜酒酸辣苦茶菜萨薯肉鱼鲜牛狗猪猫羊美鸟鸡瓜'
+  },
+  {
+    id: 'places',
+    title: 'Places, Objects & Structures (场所，物品与结构)',
+    characters: '门问安家厅店那里银文师几给钱'
+  },
+  {
+    id: 'concepts',
+    title: 'Basic Concepts & Particles (基本概念与虚词)',
+    characters: '上下不中么了京午卖西要去回国产多大太头少现万东非常'
+  },
+  {
+    id: 'media',
+    title: 'Media & Technology (媒体与技术)',
+    characters: '电影手机'
+  }
+];
 
+// Flatten all characters for total count
+export const characters = characterCategories.map(cat => cat.characters).join('');

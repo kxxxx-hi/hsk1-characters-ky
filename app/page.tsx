@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { characters, characterDict } from './data/characters'
+import { characterCategories, characterDict } from './data/characters'
 
 export default function Home() {
   const [masteredCount, setMasteredCount] = useState(0)
@@ -14,10 +14,10 @@ export default function Home() {
     
     if (newMastered.has(char)) {
       newMastered.delete(char)
-      setMasteredCount(prev => prev - 1)
+      setMasteredCount((prev: number) => prev - 1)
     } else {
       newMastered.add(char)
-      setMasteredCount(prev => prev + 1)
+      setMasteredCount((prev: number) => prev + 1)
     }
     
     // Always show meaning when clicked
@@ -33,6 +33,9 @@ export default function Home() {
     setShowMeanings(new Set())
   }
 
+  // Calculate total characters
+  const totalChars = characterCategories.reduce((sum, cat) => sum + cat.characters.length, 0)
+
   return (
     <div className="container">
       <div className="header">
@@ -47,36 +50,43 @@ export default function Home() {
         </div>
         <div className="stat-item">
           <div className="stat-label">Total</div>
-          <div className="stat-value">{characters.length}</div>
+          <div className="stat-value">{totalChars}</div>
         </div>
       </div>
 
-      <div className="character-grid">
-        {characters.split('').map((char, index) => {
-          const info = characterDict[char] || { meaning: 'Unknown', pinyin: '' }
-          const isMastered = masteredChars.has(char)
-          const showMeaning = showMeanings.has(char)
-          
-          return (
-            <div
-              key={`${char}-${index}`}
-              className={`character-card ${isMastered ? 'mastered' : ''}`}
-              onClick={() => handleCharacterClick(char)}
-            >
-              <div className="character-content">
-                <span className="character-text">{char}</span>
-                {showMeaning && (
-                  <div className="character-meaning">
-                    <div className="meaning-text">{info.meaning}</div>
-                    {info.pinyin && (
-                      <div className="pinyin-text">{info.pinyin}</div>
-                    )}
+      <div className="categories-container">
+        {characterCategories.map((category) => (
+          <div key={category.id} className="category-block">
+            <h2 className="category-title">{category.title}</h2>
+            <div className="character-grid">
+              {category.characters.split('').map((char, index) => {
+                const info = characterDict[char] || { meaning: 'Unknown', pinyin: '' }
+                const isMastered = masteredChars.has(char)
+                const showMeaning = showMeanings.has(char)
+                
+                return (
+                  <div
+                    key={`${category.id}-${char}-${index}`}
+                    className={`character-card ${isMastered ? 'mastered' : ''}`}
+                    onClick={() => handleCharacterClick(char)}
+                  >
+                    <div className="character-content">
+                      <span className="character-text">{char}</span>
+                      {showMeaning && (
+                        <div className="character-meaning">
+                          <div className="meaning-text">{info.meaning}</div>
+                          {info.pinyin && (
+                            <div className="pinyin-text">{info.pinyin}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                )}
-              </div>
+                )
+              })}
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
 
       {masteredCount > 0 && (
@@ -87,4 +97,3 @@ export default function Home() {
     </div>
   )
 }
-
