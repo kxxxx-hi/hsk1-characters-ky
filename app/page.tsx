@@ -71,13 +71,13 @@ export default function Home() {
                     onClick={() => handleCharacterClick(char)}
                   >
                     <div className="character-content">
+                      {showMeaning && info.pinyin && (
+                        <div className="pinyin-text">{info.pinyin}</div>
+                      )}
                       <span className="character-text">{char}</span>
                       {showMeaning && (
                         <div className="character-meaning">
                           <div className="meaning-text">{info.meaning}</div>
-                          {info.pinyin && (
-                            <div className="pinyin-text">{info.pinyin}</div>
-                          )}
                         </div>
                       )}
                     </div>

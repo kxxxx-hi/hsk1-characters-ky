@@ -288,13 +288,14 @@ body {
   height: 100%;
   position: relative;
   z-index: 1;
-  padding-top: 8px;
+  padding-top: 4px;
 }
 
 .character-text {
   font-size: 1.92rem;
   font-weight: 500;
   line-height: 1;
+  margin-top: 2px;
   margin-bottom: 2px;
   flex-shrink: 0;
 }
@@ -333,8 +334,9 @@ body {
   font-size: 0.44rem;
   color: var(--text-secondary);
   font-style: italic;
-  margin-top: 1px;
+  margin-bottom: 2px;
   line-height: 1.1;
+  order: -1;
 }
 
 .character-card.mastered .pinyin-text {
