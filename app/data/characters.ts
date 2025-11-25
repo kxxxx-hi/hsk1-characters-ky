@@ -236,7 +236,7 @@ export const characterCategories: CharacterCategory[] = [
   {
     id: 'media',
     title: 'Media & Technology (媒体与技术)',
-    characters: '电影手机'
+    characters: '影'
   }
 ];
 
