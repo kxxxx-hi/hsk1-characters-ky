@@ -156,6 +156,8 @@ body {
   padding: 20px;
   background: #fafafa;
   transition: var(--transition);
+  position: relative;
+  overflow: visible;
 }
 
 .category-block:hover {
@@ -185,30 +187,42 @@ body {
 /* Character Grid */
 .character-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 13px;
+  transition: transform 0.3s ease;
+}
+
+.category-block:hover .character-grid {
+  transform: scale(2);
+  transform-origin: top left;
+  z-index: 10;
+  position: relative;
 }
 
 @media (max-width: 768px) {
   .character-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: 10px;
   }
   
   .character-text {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   
   .meaning-text {
-    font-size: 0.6rem;
+    font-size: 0.48rem;
   }
   
   .pinyin-text {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
   }
   
   .character-content {
-    padding-top: 6px;
+    padding-top: 5px;
+  }
+  
+  .category-block:hover .character-grid {
+    transform: scale(1.5);
   }
 }
 
@@ -278,7 +292,7 @@ body {
 }
 
 .character-text {
-  font-size: 2.4rem;
+  font-size: 1.92rem;
   font-weight: 500;
   line-height: 1;
   margin-bottom: 2px;
@@ -302,7 +316,7 @@ body {
 }
 
 .meaning-text {
-  font-size: 0.65rem;
+  font-size: 0.52rem;
   color: var(--text-secondary);
   font-weight: 500;
   line-height: 1.1;
@@ -316,7 +330,7 @@ body {
 }
 
 .pinyin-text {
-  font-size: 0.55rem;
+  font-size: 0.44rem;
   color: var(--text-secondary);
   font-style: italic;
   margin-top: 1px;
