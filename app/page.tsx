@@ -1,60 +1,49 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { characters, characterDict, CharacterInfo } from './data/characters'
+import { useState } from 'react'
+import { characters, characterDict } from './data/characters'
 
 export default function Home() {
-  const [highlightedCount, setHighlightedCount] = useState(0)
-  const [highlightedChars, setHighlightedChars] = useState<Set<string>>(new Set())
-  const [showCard, setShowCard] = useState(false)
-  const [currentChar, setCurrentChar] = useState<string>('')
-  const [currentInfo, setCurrentInfo] = useState<CharacterInfo | null>(null)
+  const [masteredCount, setMasteredCount] = useState(0)
+  const [masteredChars, setMasteredChars] = useState<Set<string>>(new Set())
+  const [showMeanings, setShowMeanings] = useState<Set<string>>(new Set())
 
   const handleCharacterClick = (char: string) => {
-    const newHighlighted = new Set(highlightedChars)
+    const newMastered = new Set(masteredChars)
+    const newShowMeanings = new Set(showMeanings)
     
-    if (newHighlighted.has(char)) {
-      newHighlighted.delete(char)
-      setHighlightedCount(prev => prev - 1)
+    if (newMastered.has(char)) {
+      newMastered.delete(char)
+      setMasteredCount(prev => prev - 1)
     } else {
-      newHighlighted.add(char)
-      setHighlightedCount(prev => prev + 1)
+      newMastered.add(char)
+      setMasteredCount(prev => prev + 1)
     }
     
-    setHighlightedChars(newHighlighted)
+    // Always show meaning when clicked
+    newShowMeanings.add(char)
     
-    // Show meaning card
-    const info = characterDict[char] || { meaning: 'Unknown', pinyin: '' }
-    setCurrentChar(char)
-    setCurrentInfo(info)
-    setShowCard(true)
-    
-    // Auto-hide after 2.5 seconds
-    setTimeout(() => {
-      setShowCard(false)
-    }, 2500)
+    setMasteredChars(newMastered)
+    setShowMeanings(newShowMeanings)
   }
 
   const handleReset = () => {
-    setHighlightedChars(new Set())
-    setHighlightedCount(0)
-  }
-
-  const handleCloseCard = () => {
-    setShowCard(false)
+    setMasteredChars(new Set())
+    setMasteredCount(0)
+    setShowMeanings(new Set())
   }
 
   return (
     <div className="container">
       <div className="header">
-        <h1 className="title">Chinese Character Game</h1>
+        <h1 className="title">HSK 1 characters</h1>
         <p className="subtitle">Click on characters to learn their meanings</p>
       </div>
 
       <div className="stats">
         <div className="stat-item">
-          <div className="stat-label">Highlighted</div>
-          <div className="stat-value">{highlightedCount}</div>
+          <div className="stat-label">Mastered</div>
+          <div className="stat-value">{masteredCount}</div>
         </div>
         <div className="stat-item">
           <div className="stat-label">Total</div>
@@ -63,37 +52,37 @@ export default function Home() {
       </div>
 
       <div className="character-grid">
-        {characters.split('').map((char, index) => (
-          <div
-            key={`${char}-${index}`}
-            className={`character-card ${highlightedChars.has(char) ? 'highlighted' : ''}`}
-            onClick={() => handleCharacterClick(char)}
-          >
-            <span>{char}</span>
-          </div>
-        ))}
+        {characters.split('').map((char, index) => {
+          const info = characterDict[char] || { meaning: 'Unknown', pinyin: '' }
+          const isMastered = masteredChars.has(char)
+          const showMeaning = showMeanings.has(char)
+          
+          return (
+            <div
+              key={`${char}-${index}`}
+              className={`character-card ${isMastered ? 'mastered' : ''}`}
+              onClick={() => handleCharacterClick(char)}
+            >
+              <div className="character-content">
+                <span className="character-text">{char}</span>
+                {showMeaning && (
+                  <div className="character-meaning">
+                    <div className="meaning-text">{info.meaning}</div>
+                    {info.pinyin && (
+                      <div className="pinyin-text">{info.pinyin}</div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
       </div>
 
-      {highlightedCount > 0 && (
+      {masteredCount > 0 && (
         <button className="reset-btn" onClick={handleReset}>
           Reset All
         </button>
-      )}
-
-      <div 
-        className={`overlay ${showCard ? 'show' : ''}`}
-        onClick={handleCloseCard}
-      />
-
-      {showCard && currentInfo && (
-        <div className={`meaning-card ${showCard ? 'show' : ''}`}>
-          <span className="close-btn" onClick={handleCloseCard}>&times;</span>
-          <div className="character">{currentChar}</div>
-          <div className="meaning">{currentInfo.meaning}</div>
-          {currentInfo.pinyin && (
-            <div className="pinyin">{currentInfo.pinyin}</div>
-          )}
-        </div>
       )}
     </div>
   )
