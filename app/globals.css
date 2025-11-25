@@ -202,11 +202,11 @@ body {
   }
   
   .meaning-text {
-    font-size: 0.48rem;
+    font-size: 0.96rem;
   }
   
   .pinyin-text {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
   }
   
   .character-content {
@@ -308,7 +308,7 @@ body {
 }
 
 .meaning-text {
-  font-size: 0.52rem;
+  font-size: 1.04rem;
   color: var(--text-secondary);
   font-weight: 500;
   line-height: 1.1;
@@ -322,7 +322,7 @@ body {
 }
 
 .pinyin-text {
-  font-size: 0.44rem;
+  font-size: 0.88rem;
   color: var(--text-secondary);
   font-style: italic;
   margin-bottom: 2px;
