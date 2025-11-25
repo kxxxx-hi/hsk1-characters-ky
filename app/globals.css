@@ -189,14 +189,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
   gap: 13px;
-  transition: transform 0.3s ease;
-}
-
-.category-block:hover .character-grid {
-  transform: scale(2);
-  transform-origin: top left;
-  z-index: 10;
-  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -221,9 +213,6 @@ body {
     padding-top: 5px;
   }
   
-  .category-block:hover .character-grid {
-    transform: scale(1.5);
-  }
 }
 
 /* Character Card */
@@ -257,8 +246,10 @@ body {
 }
 
 .character-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--shadow-md);
+  transform: scale(2);
+  z-index: 100;
+  position: relative;
+  box-shadow: var(--shadow-lg);
   border-color: var(--accent-color);
 }
 

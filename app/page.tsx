@@ -40,7 +40,7 @@ export default function Home() {
     <div className="container">
       <div className="header">
         <h1 className="title">HSK 1 characters</h1>
-        <p className="subtitle">Click on characters to learn their meanings</p>
+        <p className="subtitle">Review and practice HSK 1 characters</p>
       </div>
 
       <div className="stats">
