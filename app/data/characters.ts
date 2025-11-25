@@ -211,7 +211,7 @@ export const characterCategories: CharacterCategory[] = [
   {
     id: 'nature',
     title: 'Nature & Elements (自然与元素)',
-    characters: '日月本机来条杯果校桌水汉没洗活温冰冷火点烫电在地坐块堡白的黑'
+    characters: '日月本机来条杯果校桌水汉没洗活温冰冷火点烫电在地坐块堡白的黑影'
   },
   {
     id: 'people',
@@ -232,11 +232,6 @@ export const characterCategories: CharacterCategory[] = [
     id: 'concepts',
     title: 'Basic Concepts & Particles (基本概念与虚词)',
     characters: '上下不中么了京午卖西要去回国产多大太头少现万东非常'
-  },
-  {
-    id: 'media',
-    title: 'Media & Technology (媒体与技术)',
-    characters: '影'
   }
 ];
 
